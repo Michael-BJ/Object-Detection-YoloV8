@@ -1,7 +1,7 @@
 import threading
 import time
 import cv2
-from ultralytics import YOLO
+#from ultralytics import YOLO
 
 start_time = time.time()
 display_time = 2

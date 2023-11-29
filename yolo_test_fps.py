@@ -168,14 +168,16 @@ if __name__ == "__main__":
         fps_disp = "FPS: "+str(FPS)[:5]
 
         ret, frame = webcam.read()
+        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         results = model(frame, conf=0.60)[0]
 
         for r in results:
-            frame = r.plot()
+            gray = r.plot()
 
-        image = cv2.putText(frame, fps_disp, (10, 25), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
+        
+        image = cv2.putText(gray, fps_disp, (10, 25), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
 
-        cv2.imshow("webcam test", frame)
+        cv2.imshow("webcam test", gray)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
     webcam.release_camera()
